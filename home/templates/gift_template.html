@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    {% load static %}
+    <link rel="icon" href="{% static 'panela.png' %}" type="image/png" />
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+    <title>Convite - Afonso & Raquel</title>
+  </head>
+  <body>
+    <div class="convite">
+      <!-- Cabeçalho -->
+      <header>
+        <div>
+          <p class="versiculo">
+            “Assim eles já não são dois, mas sim uma só carne. Portanto o que
+            Deus uniu, ninguém separe.”
+          </p>
+          <em>Mateus 19.6</em>
+        </div>
+        <h1>Afonso e Raquel</h1>
+        <p class="convite-texto">
+          Convidam para celebrar o seu chá de panela que será realizado no dia
+        </p>
+        <time>07.05.2025</time>
+        <p class="info">Às 18h, no Local Tal, n 123, Centro</p>
+      </header>
+
+      <!-- Ícones de interação -->
+      <section class="interacao">
+        <div class="icone location-popup" id="open-location-popup">
+          <i class="fas fa-church"></i>
+          <p>Local da Celebração</p>
+        </div>
+
+        <!-- Popup da Imagem -->
+        <div id="location-popup" class="popup hidden">
+          <div class="popup-content link-location">
+            <h2>Local da Celebração</h2>
+            <img
+              id="img-location"
+              src="{% static 'local.png' %}"
+              alt="Local da Celebração"
+              style="width: 100%; border-radius: 10px"
+            />
+            <a
+              href="https://maps.app.goo.gl/sHngGUEDDaQq5meP7"
+              target="_blank"
+              rel="noreferrer noopener"
+              >
+              <i class="fa-solid fa-location-dot"></i>
+              Clique para ver no mapa
+            </a>
+            <button id="close-location-popup" class="btn-popup">Fechar</button>
+          </div>
+        </div>
+
+        <div class="icone btn-popup" id="open-popup">
+          <i class="fas fa-gift"></i>
+          <p>Lista de Presentes</p>
+        </div>
+
+        <!-- Popup da Lista de Presentes -->
+        <div id="popup" class="popup hidden">
+          <div class="popup-content">
+            <h2>Lista de Presentes</h2>
+            <form method="POST" id="form-presentes">
+              {% csrf_token %}
+              <ul id="lista-presentes">
+                {% for gift in gifts %}
+                <li>
+                  <input type="checkbox" id="presente-{{ gift.id }}" {% if not gift.available %} disabled {% endif %} />
+                  <label for="presente-{{ gift.id }}">
+                    {{ gift.get_gift_display }}
+                    <span class="disponivel">
+                      {% if gift.available %} Disponível {% else %} Indisponível {% endif %}
+                    </span>
+                  </label>
+                </li>
+                {% endfor %}
+              </ul>
+              <button type="submit" id="btn-submit" style="display: none;">
+                Enviar Confirmação
+              </button>
+            </form>
+            <button id="close-popup" class="btn-popup">Fechar</button>
+          </div>
+        </div>
+
+        <div class="icone btn-popup" id="open-image-popup">
+          <i class="fas fa-image"></i>
+          <p>Sugestão de Cores</p>
+        </div>
+
+        <!-- Popup da Imagem -->
+        <div id="image-popup" class="popup hidden">
+          <div class="popup-content">
+            <h2>Sugestão de Cores</h2>
+            <img
+              src="{% static 'sugestao.jpg' %}"
+              alt="Sugestão de cores"
+              style="width: 100%; border-radius: 10px"
+            />
+            <button id="close-image-popup" class="btn-popup">Fechar</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Popup de Confirmação do WhatsApp -->
+    <section id="confirmacao-whatsapp" class="popup hidden">
+      <div class="popup-content">
+        <h2><i class="fab fa-whatsapp"></i> Confirme sua presença!</h2>
+        <p id="itens-selecionados"></p>
+        <a id="link-whatsapp" href="" target="_blank" rel="noopener noreferrer">
+          Confirmar presença
+        </a>
+        <button id="close-whatsapp-popup" class="btn-popup">Fechar</button>
+      </div>
+    </section>
+
+    <p class="tip">
+      <i class="fas fa-hand-pointer"></i> Clique nos botões para interagir
+    </p>
+
+    <script src="{% static 'script.js' %}"></script>
+  </body>
+</html>
