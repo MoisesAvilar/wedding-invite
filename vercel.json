@@ -13,7 +13,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/home/templates/git_template.html"
+        "dest": "/home/templates/gift_template.html"
       }
     ]
   }
