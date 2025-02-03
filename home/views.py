@@ -22,7 +22,7 @@ def gift_list_view(request):
     else:
         form = GiftForm()
 
-    return render(request, "gift_template.html", {"gifts": gifts, "form": form})
+    return render(request, "index.html", {"gifts": gifts, "form": form})
 
 
 def unavailable(request, gift_id):
