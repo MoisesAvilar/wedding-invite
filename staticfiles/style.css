@@ -1,0 +1,429 @@
+:root {
+    --cor-base: #aa8b6e;
+    --cor-secundaria: #4caf50;
+    --cor-escura: rgba(0, 0, 0, 0.6);
+    --cor-clara: #f3f3f3;
+    --cor-texto: #333;
+    --cor-texto-secundario: #666;
+    --cor-destaque: #2c6b33;
+    --cor-vermelho-vibrante: #d9534f;
+    --cor-vermelho-escuro: #a94442;
+    --cor-sombra: rgba(0, 0, 0, 0.1);
+    --cor-sombra-escura: rgba(0, 0, 0, 0.3);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    background-color: var(--cor-clara);
+  }
+  
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 90vh;
+    background-image: url('background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+  }
+  
+  header {
+    color: #4a4a4a;
+    padding: 40px 20px;
+  }
+  
+  header h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: var(--cor-base);
+    margin: 20px 0;
+  }
+  
+  header p,
+  header time {
+    font-size: 1.1rem;
+    margin: 5px 0;
+  }
+  
+  header .versiculo {
+    font-size: 0.8rem;
+    padding: 20px 30px 0 30px;
+    text-align: center;
+  }
+  
+  header time {
+    font-size: 2em;
+    color: var(--cor-base);
+    font-weight: bolder;
+  }
+  
+  header .info {
+    margin-top: 1em;
+  }
+  
+  .interacao {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .icone {
+    padding: 0 10px;
+    text-align: center;
+    color: var(--cor-base);
+    transition: transform 0.3s ease;
+  }
+  
+  .icone:hover {
+    transform: scale(1.2);
+    transition: transform 0.5s ease, color 0.5s ease;
+  }
+  
+  .icone i {
+    background-color: var(--cor-base);
+    color: var(--cor-clara);
+    font-size: 2rem;
+    border: 2px solid var(--cor-base);
+    border-radius: 50%;
+    padding: 10px;
+    width: 64px;
+    height: 56px;
+  }
+  
+  .icone p {
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+  
+  .tip {
+    margin-top: 10px;
+    color: var(--cor-base);
+  }
+  
+  .tip i {
+    font-size: 1.2em;
+  }
+  
+  .btn-popup {
+    cursor: pointer;
+  }
+  
+  #close-popup {
+    display: none;
+  }
+  
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  
+  .popup:not(.hidden) {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .popup-content {
+    background: var(--cor-clara);
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .popup-content h2 {
+    margin-bottom: 15px;
+  }
+  
+  .popup-content ul {
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid var(--cor-base);
+    border-radius: 5px;
+    background-color: var(--cor-clara);
+    list-style-type: none;
+  }
+  
+  .popup-content ul li {
+    margin: 10px 0;
+    font-size: 1rem;
+  }
+  
+  .popup-content .btn-popup {
+    margin-top: 20px;
+  }
+  
+  .disponivel {
+    border-radius: 10px;
+    background-color: var(--cor-destaque);
+    font-size: 0.9em;
+    color: var(--cor-clara);
+    margin-left: 10px;
+    padding: 5px 10px;
+  }
+  
+  .indisponivel {
+    background-color: var(--cor-vermelho-vibrante);
+    color: var(--cor-clara);
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: line-through;
+  }
+  
+  li.indisponivel {
+    background-color: #f2dede;
+    border: 1px solid var(--cor-vermelho-vibrante);
+    color: var(--cor-vermelho-escuro);
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: inset 0 0 10px rgba(217, 83, 79, 0.2);
+  }
+  
+  li.indisponivel span {
+    background-color: var(--cor-vermelho-vibrante);
+  }
+  
+  input[type="checkbox"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  form ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  form li {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    background-color: var(--cor-clara);
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px var(--cor-sombra);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  form li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px var(--cor-sombra-escura);
+  }
+  
+  form li label {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  form li label .disponivel {
+    margin-left: auto;
+  }
+  
+  form input[type="checkbox"] {
+    transform: scale(1.4);
+    margin-right: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  input[type="checkbox"] {
+    display: none;
+  }
+  
+  input[type="checkbox"] + label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: 1em;
+    user-select: none;
+  }
+  
+  input[type="checkbox"]:enabled + label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--cor-base);
+    background-color: var(--cor-clara);
+    border-radius: 5px;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  input[type="checkbox"]:checked + label::before {
+    background-color: var(--cor-secundaria);
+    border-color: var(--cor-secundaria);
+    box-shadow: 0 0 5px var(--cor-secundaria);
+  }
+  
+  input[type="checkbox"]:checked + label::after {
+    content: "✔";
+    position: absolute;
+    left: 4px;
+    top: 0;
+    color: white;
+    font-size: 1.5em;
+    line-height: 18px;
+  }
+  
+  input[type="checkbox"]:disabled + label::before {
+    background-color: var(--cor-vermelho-vibrante);
+    border-color: var(--cor-vermelho-vibrante);
+    box-shadow: 0 0 5px var(--cor-vermelho-vibrante);
+    position: relative;
+  }
+  
+  input[type="checkbox"]:disabled + label::after {
+    content: "\f05e";
+    font-family: "FontAwesome";
+    position: absolute;
+    left: 0;
+    top: 10%;
+    color: white;
+    font-size: 1.5em;
+    line-height: 18px;
+  }
+  
+  #btn-submit {
+    position: sticky;
+    margin: 15px auto 0;
+    padding: 10px 50px;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-clara);
+    font-size: 1.2em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 1000;
+    display: none;
+  }
+  
+  #btn-submit:hover {
+    background-color: var(--cor-destaque);
+  }
+  
+  #close-image-popup, #close-location-popup {
+    padding: 10px 50px;
+    background-color: var(--cor-base);
+    color: var(--cor-clara);
+    font-size: 1.2em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .popup-content img {
+    border: 1px solid var(--cor-base);
+  }
+  
+  .popup-content a {
+    text-decoration: underline;
+    color: var(--cor-base);
+    padding: 20px 0;
+  }
+  
+  .link-location {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #confirmacao-whatsapp {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--cor-clara);
+    text-align: center;
+    z-index: 1000;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  
+  #confirmacao-whatsapp.show {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  #confirmacao-whatsapp .popup-content {
+    background-color: var(--cor-base);
+    padding: 30px 40px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  #confirmacao-whatsapp .popup-content h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--cor-clara);
+  }
+  
+  #confirmacao-whatsapp .popup-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: var(--cor-texto-secundario);
+  }
+  
+  #confirmacao-whatsapp .popup-content a {
+    background-color: var(--cor-secundaria);
+    color: white;
+    padding: 12px 25px;
+    font-size: 1.2em;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  #confirmacao-whatsapp .popup-content a:hover {
+    background-color: var(--cor-destaque);
+    transform: translateY(-3px);
+  }
+  
+  #confirmacao-whatsapp .popup-content a:active {
+    background-color: var(--cor-vermelho-vibrante);
+    transform: translateY(2px);
+  }
