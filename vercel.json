@@ -13,7 +13,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/home/templates/index.html"
+        "dest": "/app.urls"
       }
     ]
   }
